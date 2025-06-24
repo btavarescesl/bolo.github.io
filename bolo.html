@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feliz Aniversário!</title>
+  <!-- Fonte moderna do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffdee9, #b5fffc);
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    #confetes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5em;
+      color: #ff4081;
+      animation: pulse 2s infinite;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .cake {
+      margin: 50px auto;
+      width: 200px;
+      height: 200px;
+      position: relative;
+      z-index: 1;
+      animation: swing 2s infinite;
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(0deg);}
+      20% { transform: rotate(-5deg);}
+      40% { transform: rotate(5deg);}
+      60% { transform: rotate(-3deg);}
+      80% { transform: rotate(3deg);}
+      100% { transform: rotate(0deg);}
+    }
+
+    .cake .layer {
+      width: 100%;
+      height: 50px;
+      background: #ffb347;
+      border-radius: 10px;
+      position: absolute;
+      left: 0;
+    }
+
+    .cake .layer:nth-child(1) { bottom: 0; }
+    .cake .layer:nth-child(2) {
+      bottom: 55px;
+      width: 160px;
+      left: 20px;
+      background: #ffcc70;
+    }
+    .cake .layer:nth-child(3) {
+      bottom: 110px;
+      width: 120px;
+      left: 40px;
+      background: #fff0a3;
+    }
+
+    .candle {
+      width: 10px;
+      height: 30px;
+      background: #ff69b4;
+      position: absolute;
+      top: 0;
+      left: 95px;
+    }
+
+    .flame {
+      width: 15px;
+      height: 15px;
+      background: yellow;
+      border-radius: 50%;
+      position: absolute;
+      top: -15px;
+      left: -2.5px;
+      animation: flicker 0.3s infinite;
+      box-shadow: 0 0 20px 5px yellow;
+    }
+
+    @keyframes flicker {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .mensagem {
+      font-size: 1.5em;
+      margin: 20px;
+      color: #444;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    /* Botão de musica */
+    .botao-musica {
+  margin-top: 20px;
+  padding: 12px 32px;
+  background: linear-gradient(90deg, #ff4081 40%, #b5fffc 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255,64,129,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.botao-musica:hover {
+  background: linear-gradient(90deg, #b5fffc 40%, #ff4081 100%);
+  transform: scale(1.05);
+}
+
+    /* Confetes */
+    .confete {
+      width: 8px;
+      height: 8px;
+      background-color: red;
+      position: absolute;
+      border-radius: 50%;
+      animation: cair 3s linear forwards;
+      z-index: 0;
+    }
+
+    @keyframes cair {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="confetes"></div>
+
+  <h1>Feliz Aniversário, meu amor! 🎉</h1>
+
+  <div class="cake">
+    <div class="layer"></div>
+    <div class="layer"></div>
+    <div class="layer"></div>
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+  </div>
+
+  <p class="mensagem">
+    Que seu dia seja tão doce quanto esse bolo <br>
+    e cheio de amor como o que eu sinto por você 💖<br><br>
+    Eu Te amo muito! 
+  </p>
+    <button class="botao-musica" onclick="document.getElementById('musica').play()">Tocar Música</button>
+  <audio id="musica" src="Katy Perry - Birthday [h7gV4M2BERc].mp3" loop></audio>
+<script>
+  // Criar confetes coloridos atrás do bolo
+  function criarConfete() {
+    const confete = document.createElement('div');
+    confete.classList.add('confete');
+    confete.style.left = Math.random() * 100 + 'vw';
+    confete.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    confete.style.animationDuration = (2 + Math.random() * 3) + 's';
+    confete.style.top = '-10px';
+    document.getElementById('confetes').appendChild(confete);
+
+    setTimeout(() => confete.remove(), 5000);
+  }
+
+  setInterval(criarConfete, 200);
+</script>
+</body>
+</html>
